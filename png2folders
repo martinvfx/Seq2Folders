@@ -1,0 +1,23 @@
+import os
+
+# Get the current directory
+current_dir = os.getcwd()
+
+# Get a list of all files in the directory
+files = os.listdir(current_dir)
+
+# Iterate over the files
+for file in files:
+    # Check if the file is a PNG
+    if file.endswith(".png"):
+        # Get the prefix of the file (the letters before the number)
+        prefix = file.split(".")[0][:-4]
+
+        # Create the folder if it doesn't exist
+        folder_path = os.path.join(current_dir, prefix)
+        if not os.path.exists(folder_path):
+            os.mkdir(folder_path)
+
+        # Move the file to the folder
+        file_path = os.path.join(current_dir, file)
+        os.rename(file_path, os.path.join(folder_path, file))
